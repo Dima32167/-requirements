@@ -40,5 +40,29 @@ def test_dz_1(page: Page):
 
 def test_dz_2(page: Page):
     page.goto('https://demoqa.com/automation-practice-form')
+    first_name = page.get_by_role('textbox', name='first Name')
+    first_name.fill('Dima')
+    last_name = page.get_by_role('textbox', name='last name')
+    last_name.fill('Artamonov')
+    email = page.get_by_placeholder('name@example.com')
+    email.fill('dima1993@mail.com')
+    gender = page.get_by_role('radio', name='Female')
+    gender.click()
+    mobile = page.get_by_role('textbox', name='Mobile Number')
+    mobile.fill('9117728820')
+    data_locator = page.locator('#dateOfBirthInput')
+    data_locator.click()
+    page.locator(".react-datepicker__day--023").click()
+    expect(page.locator(".react-datepicker")).to_be_hidden()
+    subjects = page.locator("#subjectsInput")
+    subjects.fill("English")
+    page.get_by_text("English", exact=True).click()
+    hobbies = page.get_by_role('checkbox', name='Music')
+    hobbies.click()
+    button = page.get_by_role('button', name='Submit')
+    button.click()
+    sleep(3)
+
+
 
 
